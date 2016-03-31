@@ -1,0 +1,16 @@
+Package: creole
+Type: Package
+Title: Consensus Representative Estimation of Lineage Expression
+Version: 0.1
+Date: 2016-01-21
+Authors@R: person("Geoffrey", "Schau", email = "schau.geoffrey@gmail.com", role = c("aut", "cre"))
+License: GPL
+Description: The creole package is a series of tools designed to estimate gene
+    expression trends through pseudo- or development-time given single-cell RNA-
+    seq data. The code is designed in three parts. creole_map models the data in a
+    low-dimensional space and calculates lineage divergence and a putative origin.
+    Creole_lines estimates a fine-resolution pseudo-temporal signal for each input
+    gene through each lineage. Creole_plot shows this data visually and creates
+    figures to facilitate an interpretation of the data presented.
+RoxygenNote: 5.0.1
+LazyData: TRUE
