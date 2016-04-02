@@ -4,7 +4,7 @@
 \alias{makeSyntheticData}
 \title{makeSyntheticData}
 \usage{
-makeSyntheticData()
+makeSyntheticData(numCells = 700, numGroups = 7)
 }
 \description{
 This function generates a synthetic dataset for use in example documentation

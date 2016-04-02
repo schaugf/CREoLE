@@ -122,7 +122,6 @@ creole_lines <- function(outDir,origin=NA,subFrac=0.6,numPts=10000,numIters=100,
       sub.DM = prcomp(sub.cData)
       sub.DM = sub.DM$x
     }
-    
     for (j in 1:length(lineages)){ # for each lineage
       lineage = lineages[[j]]
       VSCO.out = VbSCO(DM=sub.DM,k=sub.k,c=unlist(lineage))

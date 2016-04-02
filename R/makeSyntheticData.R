@@ -10,11 +10,9 @@
 #' @examples
 #' makeSyntheticData()
 
-makeSyntheticData <- function(){
+makeSyntheticData <- function(numCells = 700, numGroups = 7){
   set.seed(1000)
-  numCells = 700
-  numGroups = 7
-  numGenes = numGroups + 1 # +1 for "house-keeping"
+  numGenes = numGroups
   groupNum = floor(numCells/numGroups)
   expressionMatrix = matrix(nrow=numCells, ncol=numGenes, data=0)
   
@@ -38,14 +36,9 @@ makeSyntheticData <- function(){
     lineage = unlist(lineages[[i]])
     for (k in 2:length(lineage)){ # for each preceeding part of the lineage
       precLin = lineage[k]
-      # NOT RIGHT
       expressionMatrix[((lineage[1]*groupNum)-(groupNum-1)):(lineage[1]*groupNum),precLin] = 1
-      #expressionMatrix[((precLin*groupNum)-(groupNum-1)):(precLin*groupNum),lineage[1]] = 1
     }
   }
-  
-  # --- Add Random Genes ---
-  expressionMatrix[,numGenes] = runif(numCells,min=0,max=1)
   
   # --- Save as Table ---
   write.table(expressionMatrix,file='SyntheticData.rda',sep='\t',row.names = TRUE)

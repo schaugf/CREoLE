@@ -136,8 +136,8 @@ creole_map <- function(data,is.scaled=FALSE,outDir,numClusters,numDims,sigma,dop
       
     cenA = KM$centers[,i:(i+1)]
     for(j in 1:(nrow(d.mst))){
-      from = c(KM$centers[d.mst$from[j],][i], KM$centers[d.mst$from[j],][(i%%3)+1])
-      to = c(KM$centers[d.mst$to[j],][i], KM$centers[d.mst$to[j],][(i%%3)+1])
+      from = c(KM$centers[d.mst$from[j],][i], KM$centers[d.mst$from[j],][(i+1)])
+      to = c(KM$centers[d.mst$to[j],][i], KM$centers[d.mst$to[j],][(i+1)])
       sD = data.frame(x=from[1],xend=to[1],y=from[2],yend=to[2])
       p[[i]] = p[[i]] + geom_segment(aes(x=x,y=y,xend=xend,yend=yend),data=sD)
     }

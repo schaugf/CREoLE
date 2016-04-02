@@ -4,7 +4,7 @@
 \alias{creole_plots}
 \title{creole_plots}
 \usage{
-creole_plots(outDir, figW = 86, figH = 60, figU = "mm", figF = "eps",
+creole_plots(outDir, figW = 100, figH = 60, figU = "mm", figF = "eps",
   figD = 350)
 }
 \arguments{

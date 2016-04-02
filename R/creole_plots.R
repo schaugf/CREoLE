@@ -30,7 +30,7 @@
 #' creole_plot()
 # ---
 
-creole_plots <- function(outDir,figW=86,figH=60,figU='mm',figF ='eps',figD=350){
+creole_plots <- function(outDir,figW=100,figH=60,figU='mm',figF ='eps',figD=350){
 
   library(ggplot2)
   library(reshape2)
