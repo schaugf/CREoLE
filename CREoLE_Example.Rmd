@@ -1,0 +1,58 @@
+---
+title: "CREoLE Example"
+author: "Geoffrey Schau"
+date: "April 3, 2016"
+output: pdf_document
+---
+
+# Introduction
+
+This script is a brief example designed to illustrate the utility of the CREoLE algorithm. With the CREoLE package and requisite utilities installed, this markdown file illustrates how lineage-specific gene expression trends may be recapitulated using the CREoLE algorithm with a synthetic data set. Using the makeSyntheticData() function, a simulated single-cell RNA-seq (scRNA-seq) data set is generated. Note that file write permissions may be required for CREoLE to properly save necessary data.
+
+# creole_map()
+
+The creole_map() function is designed to estimate the lineage structure embedded in an scRNA-seq data set. Several variables may be set, including the number of dimensions used to capture variance in the data set and the number of clusters used to facilitate lineage definition. However, CREoLE will automcatically compute default parameters if no parameter is provided. Of these, the number of dimensions necessary to capture variance within the data (numDims), the number of clusters to effectively cluster the data (numClusters), and the method to reduce the dimensionality of the data (dimD) are primary variables the control CREoLE's computation. 
+
+```{r}
+# --- Load CREoLE Package ---
+library(creole)
+# --- Generate Synthetic Data ---
+synD = creole::makeSyntheticData()
+# --- Set Relative Output Directory ---
+oD = paste0(getwd(),'/ExampleOut')
+Cm = creole_map(synD,outDir = oD,numClusters = 8,numDims=4)
+
+```
+
+# creole_lines()
+
+Once a CREoLE map has been calculated, creole_lines() estimates developmental expression trends by iteratively sub-sampling the map and calculating expression extimations. Again, several parameters control computation. The origin cluster defines the "starting point" of the developmental trend; subFrac sets the fraction of cell sampled without replacement at each iteration; numPts sets the number of points to define the consensus trend; numIters sets the number of sampling iterations calculated. 
+
+```{r, echo=FALSE}
+
+Cl = creole_lines(outDir=oD,origin=6,numIters=10,subFrac=0.7,numPts=10000)
+
+#![Figure 1](~/Dropbox/Projects/CREoLE/ExampleOut/Figures/Projection1.png')
+```
+
+# creole_plots()
+
+The creole_lines function returns a three-dimensional matrix where the columns represent each gene, the rows represent developmental time, and is layered for each lineage. The CREoLE algorithm can plot these trends, and other meaningful summaries, using a plotting function. Various figure parameters, including width (figW), height (figH), units of measurement (figU), format (figF), and DPI (figD) may be set. Each figure will be saved to the file system in the output directory. 
+
+```{r, echo=FALSE}
+
+creole_plots(outDir=oD)
+
+```
+
+# Conclusions
+
+This brief example has hopefully instructed the viewer in a basic application of the CREoLE algorithm for accurately recapitulating gene expression trends given an example single-cell RNA-seq data set. Any questions may be sent to schau@ohsu.edu or adey@ohsu.edu. 
+
+
+
+
+
+
+
+
